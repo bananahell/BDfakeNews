@@ -3,28 +3,67 @@
 def CreateTables(conn):
     cursor = conn.cursor()
 
-    cursor.execute("""CREATE TABLE IF NOT EXISTS Employee (
+    cursor.execute("""CREATE TABLE IF NOT EXISTS CategoriaNoticia (
         Id INTEGER PRIMARY KEY,
-        fname VARCHAR(30) NOT NULL,
-        lname VARCHAR(30) NOT NULL
+        Nome VARCHAR(30) NOT NULL,
+        Descricao VARCHAR(150) NOT NULL
         );""")
 
-    cursor.execute("""CREATE TABLE IF NOT EXISTS Notícia (
+    cursor.execute("""CREATE TABLE IF NOT EXISTS InfluenciaExterna (
+        Id INTEGER PRIMARY KEY,
+        Nome VARCHAR(30) NOT NULL
+        );""")
+
+    cursor.execute("""CREATE TABLE IF NOT EXISTS Noticia (
         Id INTEGER PRIMARY KEY,
         Manchete VARCHAR(100) NOT NULL,
-        Descrição VARCHAR(200) NOT NULL,
-        Consequência VARCHAR(200) NOT NULL,
-        Popularidade INTEGER
+        Descricao VARCHAR(500),
+        Consequencia VARCHAR(300),
+        Popularidade INTEGER,
+        Data DATE,
+        Piada BOOLEAN,
+        InfluenciaId INTEGER REFERENCES InfluenciaExterna (Id)
         );""")
 
-    cursor.execute("""CREATE TABLE IF NOT EXISTS CategoriaMídia (
-        Id INTEGER PRIMARY KEY,
-        Nome NOT NULL
+    cursor.execute("""CREATE TABLE IF NOT EXISTS PalavraChave (
+        Nome VARCHAR(30) PRIMARY KEY,
+        Idioma VARCHAR(15) NOT NULL
         );""")
 
-    cursor.execute("""CREATE TABLE IF NOT EXISTS Mídia (
+    cursor.execute("""CREATE TABLE IF NOT EXISTS Local (
+        Sigla CHAR(2) PRIMARY KEY,
+        Nome VARCHAR(10) NOT NULL,
+        Complemento VARCHAR(50)
+        );""")
+
+    cursor.execute("""CREATE TABLE IF NOT EXISTS FonteConfiavel (
+        Nome VARCHAR(30) PRIMARY KEY,
+        Descricao VARCHAR(200) NOT NULL,
+        NoticiaId INTEGER REFERENCES Noticia (Id)
+        );""")
+
+    cursor.execute("""CREATE TABLE IF NOT EXISTS Pessoa (
         Id INTEGER PRIMARY KEY,
-        Nome VARCHAR(50) NOT NULL
+        Nome VARCHAR(50) NOT NULL,
+        Idade INTEGER
+        );""")
+
+    cursor.execute("""CREATE TABLE IF NOT EXISTS Ocupacao (
+        Id INTEGER PRIMARY KEY,
+        Emprego VARCHAR(40) NOT NULL,
+        Descricao VARCHAR(100)
+        );""")
+
+    cursor.execute("""CREATE TABLE IF NOT EXISTS CategoriaMidia (
+        Id INTEGER PRIMARY KEY,
+        Nome VARCHAR(30) NOT NULL,
+        Descricao VARCHAR(60) NOT NULL
+        );""")
+
+    cursor.execute("""CREATE TABLE IF NOT EXISTS Midia (
+        Id INTEGER PRIMARY KEY,
+        Nome VARCHAR(50) NOT NULL,
+        Descricao VARCHAR(250)
         );""")
 
     cursor.close()
