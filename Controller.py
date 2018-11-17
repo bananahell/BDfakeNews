@@ -18,8 +18,8 @@ def main():
 
 		conn = psycopg2.connect(connect_str)
 		bd.CreateTables(conn)
-		bd.Insert("CategoriaNoticia", conn, 0, "'Violência'",
-		"'Agressão física e/ou moral a própria pessoa ou a terceiros relacionados.'")
+		# bd.Insert("CategoriaNoticia", conn, 0, "'Violência'",
+		# "'Agressão física e/ou moral a própria pessoa ou a terceiros relacionados.'")
 		# print("|Teste do Banco de Dados de Fake News|")
 		# View = show()
 		# View.printTableCategoryNews(conn)
