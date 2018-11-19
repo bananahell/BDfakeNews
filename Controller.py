@@ -13,13 +13,13 @@ import Model as bd
 
 def main():
 	try:
-		connect_str = "dbname='tqgaawak' user='tqgaawak' host='baasu.db.elephantsql.com' " + \
-			"password='v8VTem4ezV9DxFZfZEf1Hfa0RT7MNn5G'"
+		connect_str = "dbname='Projeto' user='admin' host='localhost' " + \
+			"password='123'"
 
 		conn = psycopg2.connect(connect_str)
 		bd.CreateTables(conn)
-		# bd.Insert("CategoriaNoticia", conn, 0, "'Violência'",
-		# "'Agressão física e/ou moral a própria pessoa ou a terceiros relacionados.'")
+		bd.Insert("CategoriaNoticia", conn, "'Violência'",
+		"'Agressão física e/ou moral a própria pessoa ou a terceiros relacionados.'")
 		# print("|Teste do Banco de Dados de Fake News|")
 		# View = show()
 		# View.printTableCategoryNews(conn)

@@ -4,25 +4,25 @@ def CreateTables(conn):
     cursor = conn.cursor()
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS CategoriaNoticia (
-        Id INTEGER PRIMARY KEY,
         Nome VARCHAR(30) NOT NULL,
-        Descricao VARCHAR(150) NOT NULL
+        Descricao VARCHAR(150) NOT NULL,
+        Id SERIAL PRIMARY KEY
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS InfluenciaExterna (
-        Id INTEGER PRIMARY KEY,
-        Nome VARCHAR(30) NOT NULL
+        Nome VARCHAR(30) NOT NULL,
+        Id SERIAL PRIMARY KEY
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS Noticia (
-        Id INTEGER PRIMARY KEY,
         Manchete VARCHAR(100) NOT NULL,
         Descricao VARCHAR(500),
         Consequencia VARCHAR(300),
         Popularidade INTEGER,
         Data DATE,
         Piada BOOLEAN,
-        InfluenciaId INTEGER REFERENCES InfluenciaExterna (Id)
+        InfluenciaId INTEGER REFERENCES InfluenciaExterna (Id),
+        Id SERIAL PRIMARY KEY
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS PalavrasChave (
@@ -43,29 +43,29 @@ def CreateTables(conn):
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS Ocupacao (
-        Id INTEGER PRIMARY KEY,
         Emprego VARCHAR(40) NOT NULL,
-        Descricao VARCHAR(100)
+        Descricao VARCHAR(100),
+        Id SERIAL PRIMARY KEY
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS Pessoa (
-        Id INTEGER PRIMARY KEY,
         Nome VARCHAR(50) NOT NULL,
         Idade INTEGER,
-        OcupacaoId INTEGER REFERENCES Ocupacao (Id)
+        OcupacaoId INTEGER REFERENCES Ocupacao (Id),
+        Id SERIAL PRIMARY KEY
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS CategoriaMidia (
-        Id INTEGER PRIMARY KEY,
         Nome VARCHAR(30) NOT NULL,
-        Descricao VARCHAR(60) NOT NULL
+        Descricao VARCHAR(60) NOT NULL,
+        Id SERIAL PRIMARY KEY
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS Midia (
-        Id INTEGER PRIMARY KEY,
         Nome VARCHAR(50) NOT NULL,
         Descricao VARCHAR(250),
-        CategoriaId INTEGER REFERENCES CategoriaMidia (Id)
+        CategoriaId INTEGER REFERENCES CategoriaMidia (Id),
+        Id SERIAL PRIMARY KEY
         );""")
 
 

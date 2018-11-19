@@ -1,0 +1,157 @@
+BDzão
+
+CRUD - Insert, Select, Alter, Delete
+
+CategoriaNoticia     Id INTEGER PRIMARY KEY, Nome VARCHAR(30) NOT NULL, Descricao VARCHAR(150) NOT NULL
+InfluenciaExterna    Id INTEGER PRIMARY KEY, Nome VARCHAR(30) NOT NULL
+Noticia              Id INTEGER PRIMARY KEY, Manchete VARCHAR(100) NOT NULL, Descricao VARCHAR(500), Consequencia VARCHAR(300), Popularidade INTEGER, Data DATE, Piada BOOLEAN,
+                         InfluenciaId INTEGER REFERENCES InfluenciaExterna (Id)
+PalavrasChave        Nome VARCHAR(30) PRIMARY KEY, Idioma VARCHAR(15) NOT NULL
+Local                Sigla CHAR(2) PRIMARY KEY, Nome VARCHAR(10) NOT NULL, Complemento VARCHAR(50)
+FonteConfiavel       Nome VARCHAR(30) PRIMARY KEY, Descricao VARCHAR(200) NOT NULL, NoticiaId INTEGER REFERENCES Noticia (Id)
+Ocupacao             Id INTEGER PRIMARY KEY, Emprego VARCHAR(40) NOT NULL, Descricao VARCHAR(100)
+Pessoa               Id INTEGER PRIMARY KEY, Nome VARCHAR(50) NOT NULL, Idade INTEGER, OcupacaoId INTEGER REFERENCES Ocupacao (Id)
+CategoriaMidia       Id INTEGER PRIMARY KEY, Nome VARCHAR(30) NOT NULL, Descricao VARCHAR(60) NOT NULL
+Midia                Id INTEGER PRIMARY KEY, Nome VARCHAR(50) NOT NULL, Descricao VARCHAR(250), CategoriaId INTEGER REFERENCES CategoriaMidia (Id)
+
+Midia_Noticia             NoticiaId INTEGER REFERENCES Noticia (Id), MidiaId INTEGER REFERENCES Midia (Id), PRIMARY KEY (NoticiaId, MidiaId)
+PalavrasChave_Noticia     NoticiaId INTEGER REFERENCES Noticia (Id), PalavrasChaveId VARCHAR(30) REFERENCES PalavrasChave (Nome), PRIMARY KEY (NoticiaId, PalavrasChaveId)
+Local_Noticia             NoticiaId INTEGER REFERENCES Noticia (Id), LocalId CHAR(2) REFERENCES Local (Sigla), PRIMARY KEY (NoticiaId, LocalId)
+CategoriaNoticia_Noticia  NoticiaId INTEGER REFERENCES Noticia (Id), CategoriaId INTEGER REFERENCES CategoriaNoticia (Id), PRIMARY KEY (NoticiaId, CategoriaId)
+Autor_Noticia             NoticiaId INTEGER REFERENCES Noticia (Id), AutorId INTEGER REFERENCES Pessoa (Id), PRIMARY KEY (NoticiaId, AutorId)
+Vitima_Noticia            NoticiaId INTEGER REFERENCES Noticia (Id), VitimaId INTEGER REFERENCES Pessoa (Id), PRIMARY KEY (NoticiaId, VitimaId)
+
+Inserts {
+
+  Insert categoriaNoticia {
+    -- Insert categoriaNoticia_Noticia
+  }
+  Insert influenciaExterna {}
+  Insert notícia {
+    LigarCom influenciaExterna OU Insert influenciaExterna
+    -- Insert midia_noticia
+    -- Insert palavrasChave_Noticia
+    -- Insert local_Noticia
+    -- Insert categoriaNoticia_Noticia
+    -- Insert autor_Noticia
+    -- Insert vitima_Noticia
+  }
+  Insert palavrasChave {
+    -- Insert palavrasChave_Noticia
+  }
+  Insert local {
+    -- Insert local_Noticia
+  }
+  Insert fonteConfiavel {
+    LigarCom noticia
+  }
+  Insert ocupacao {}
+  Insert pessoa {
+    LigarCom ocupacao OU Insert ocupacao
+    -- Insert autor_Noticia
+    -- Insert vitima_Noticia
+  }
+  Insert categoriaMidia {}
+  Insert midia {
+    LigarCom categoriaMidia OU Insert categoriaMidia
+    -- Insert midia_Noticia
+  }
+
+}
+
+Select {
+
+  Select categoriaNoticia {}
+  Select influenciaExterna {
+    Join notícia
+  }
+  Select notícia {
+    Join influenciaExterna OU Insert influenciaExterna
+    Join midia_noticia
+    Join palavrasChave_Noticia
+    Join local_Noticia
+    Join categoriaNoticia_Noticia
+    Join pessoa {
+      Join autor_Noticia
+      Join vitima_Noticia
+    }
+    Join fonteConfiavel
+  }
+  Select palavrasChave {}
+  Select local {}
+  Select fonteConfiavel {
+    Join noticia
+  }
+  Select ocupacao {}
+  Select pessoa {
+    Joinocupacao OU Insert ocupacao
+    SIM/NÃO autor_Noticia
+    SIM/NÃO vitima_Noticia
+  }
+  Select categoriaMidia {}
+  Select midia {
+    Join categoriaMidia OU Insert categoriaMidia
+    Join midia_Noticia
+  }
+
+}
+
+Alter {
+
+  Alter categoriaNoticia {}
+  Alter influenciaExterna {}
+  Alter notícia {
+    Alter influenciaExterna OU Insert influenciaExterna
+    -- Alter midia_noticia
+    -- Alter palavrasChave_Noticia
+    -- Alter local_Noticia
+    -- Alter categoriaNoticia_Noticia
+    -- Alter autor_Noticia
+    -- Alter vitima_Noticia
+    -- Alter fonteConfiavel
+  }
+  Alter palavrasChave {}
+  Alter local {}
+  Alter fonteConfiavel {}
+  Alter ocupacao {}
+  Alter pessoa {
+    Alter ocupacao OU Insert ocupacao
+  }
+  Alter categoriaMidia {}
+  Alter midia {
+    Alter categoriaMidia OU Insert categoriaMidia
+  }
+
+}
+
+Deletes {
+
+  Apagar categoriaNoticia {
+    Apagar categoriaNoticia_Noticia {}
+  }
+  Apagar influenciaExterna {
+    Tranformar noticia.influenciaId = NULL
+  }
+  Apagar notícia {}
+  Apagar palavrasChave {
+    Apagar palavrasChave_Noticia {}
+  }
+  Apagar local {
+    Apagar local_Noticia {}
+  }
+  Apagar fonteConfiavel {}
+  Apagar ocupacao {
+    Tranformar pessoa.ocupacaoId = NULL
+  }
+  Apagar pessoa {
+    Apagar autor_Noticia {}
+    Apagar vitima_Noticia {}
+  }
+  Apagar categoriaMidia {
+    Tranformar midia.categoriaId = NULL
+  }
+  Apagar midia {
+    Apagar midia_Noticia {}
+  }
+
+}
