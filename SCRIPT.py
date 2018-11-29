@@ -1,29 +1,46 @@
 import psycopg2
+import Model
 
+table_columns = {"categorianoticia":  ("id", "nome", "descricao"),
+                 "noticia":           ("id", "manchete", "descricao", "consequencia", "popularidade", "data", "piada", "influenciaid"),
+                 "Influenciaexterna": ("id", "nome"),
+                 "palavraschave":     ("nome, idioma"),
+                 "local":             ("sigla", "nome", "complemento"),
+                 "fonteconfiavel":    ("nome", "descricao", "noticiaid"),
+                 "ocupacao":          ("id", "emprego", "descricao"),
+                 "pessoa":            ("id", "nome", "idade", "ocupacaoid"),
+                 "categoriamidia":    ("id", "nome", "descricao"),
+                 "midia":             ("id", "nome", "descricao", "categoriaid"),
+
+                 "midia_noticia":            ("noticiaid", "midiaid"),
+                 "palavraschave_noticia":    ("noticiaid", "palavraschaveid"),
+                 "local_noticia":            ("noticiaid", "localid"),
+                 "categorianoticia_noticia": ("noticiaid", "categorianoticia_noticia"),
+                 "autor_noticia":            ("noticiaid", "autorid"),
+                 "vitima_noticia":           ("noticiaid", "vitimaid")}
 
 def CreateTables(conn):
     cursor = conn.cursor()
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS CategoriaNoticia (
-        Id INTEGER PRIMARY KEY,
+        Id SERIAL PRIMARY KEY,
         Nome VARCHAR(30) NOT NULL,
         Descricao VARCHAR(150) NOT NULL
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS InfluenciaExterna (
-        Id INTEGER PRIMARY KEY,
+        Id SERIAL PRIMARY KEY,
         Nome VARCHAR(30) NOT NULL
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS Noticia (
-        Id INTEGER PRIMARY KEY,
+        Id SERIAL PRIMARY KEY,
         Manchete VARCHAR(100) NOT NULL,
         Descricao VARCHAR(500),
         Consequencia VARCHAR(300),
         Popularidade INTEGER,
         Data DATE,
-        Piada BOOLEAN,
-        InfluenciaId INTEGER REFERENCES InfluenciaExterna (Id)
+        Piada BOOLEAN
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS PalavrasChave (
@@ -38,42 +55,54 @@ def CreateTables(conn):
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS FonteConfiavel (
-        Nome VARCHAR(30) PRIMARY KEY,
-        Descricao VARCHAR(200) NOT NULL,
-        NoticiaId INTEGER REFERENCES Noticia (Id)
+        Id SERIAL PRIMARY KEY,
+        Nome VARCHAR(30) NOT NULL,
+        Descricao VARCHAR(200)
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS Ocupacao (
-        Id INTEGER PRIMARY KEY,
+        Id SERIAL PRIMARY KEY,
         Emprego VARCHAR(40) NOT NULL,
         Descricao VARCHAR(100)
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS Pessoa (
-        Id INTEGER PRIMARY KEY,
+        Id SERIAL PRIMARY KEY,
         Nome VARCHAR(50) NOT NULL,
         Idade INTEGER,
         OcupacaoId INTEGER REFERENCES Ocupacao (Id)
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS CategoriaMidia (
-        Id INTEGER PRIMARY KEY,
+        Id SERIAL PRIMARY KEY,
         Nome VARCHAR(30) NOT NULL,
         Descricao VARCHAR(60) NOT NULL
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS Midia (
-        Id INTEGER PRIMARY KEY,
+        Id SERIAL PRIMARY KEY,
         Nome VARCHAR(50) NOT NULL,
         Descricao VARCHAR(250),
         CategoriaId INTEGER REFERENCES CategoriaMidia (Id)
         );""")
 
 
+    cursor.execute("""CREATE TABLE IF NOT EXISTS Influencia_Noticia (
+        NoticiaId INTEGER REFERENCES Noticia (Id),
+        InfluenciaId INTEGER REFERENCES InfluenciaExterna (Id),
+        PRIMARY KEY (NoticiaId, InfluenciaId)
+        );""")
+
     cursor.execute("""CREATE TABLE IF NOT EXISTS Midia_Noticia (
         NoticiaId INTEGER REFERENCES Noticia (Id),
         MidiaId INTEGER REFERENCES Midia (Id),
         PRIMARY KEY (NoticiaId, MidiaId)
+        );""")
+
+    cursor.execute("""CREATE TABLE IF NOT EXISTS FonteConfiavel_Noticia (
+        NoticiaId INTEGER REFERENCES Noticia (Id),
+        FonteId INTEGER REFERENCES FonteConfiavel (Id),
+        PRIMARY KEY (NoticiaId, FonteId)
         );""")
 
     cursor.execute("""CREATE TABLE IF NOT EXISTS PalavrasChave_Noticia (
@@ -110,36 +139,41 @@ def CreateTables(conn):
 
 
 def Insert(TableName, conn, *args):
-    string_args = list(map(lambda a: str(a), args))
-    cursor = conn.cursor()
-    sql = """INSERT INTO """ + TableName + " VALUES(" + (", ".join(string_args)) + """);"""
-    cursor.execute(sql)
-
-    cursor.close()
+    try:
+        string_args = list(map(lambda a: str(a), args))
+        cursor = conn.cursor()
+        print ("ayy lmao")
+        sql = """INSERT INTO """ + TableName + "(" + (", ".join(table_columns[TableName])) + ")" + " VALUES(" + (", ".join(string_args)) + """);"""
+        print (sql)
+        cursor.execute(sql)
+    except Exception as e:
+        print ("Problem inserting values into " + TableName)
+    finally:
+        cursor.close()
 
 
 
 def main():
-	try:
-		connect_str = "dbname='Projeto' user='admin' host='localhost' password='123'"
+    try:
+        connect_str = "dbname='Projeto' user='admin' host='localhost' password='123'"
 
-		conn = psycopg2.connect(connect_str)
-		CreateTables(conn)
-		Insert("CategoriaNoticia", conn, 0, "'Violência'",
-		"'Agressão física e/ou moral a própria pessoa ou a terceiros relacionados.'")
+        conn = psycopg2.connect(connect_str)
+        print ("antesainda")
+        CreateTables(conn)
+        print ("aqui")
+        Insert("CategoriaNoticia", conn, 0, "'Violência'",
+        "'Agressão física e/ou moral a própria pessoa ou a terceiros relacionados.'")
+        print ("passou")
 
+        conn.commit()
 
-
-		conn.commit()
-
-
-	except Exception as e:
-		print("Uh oh, can't connect. Invalid dbname, user or password?")
-		print(e)
-	finally:
-		if conn is not None:
-			conn.close()
+    except Exception as e:
+        print("Uh oh, can't connect. Invalid dbname, user or password?")
+        print(e)
+    finally:
+        if conn is not None:
+            conn.close()
 
 
 if __name__ == '__main__':
-	main()
+    main()
