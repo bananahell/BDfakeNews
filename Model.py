@@ -1,22 +1,24 @@
 from PyQt5 import QtWidgets, QtSql
 
 table_columns = {"categorianoticia":  ("id", "nome", "descricao"),
-                 "noticia":           ("id", "manchete", "descricao", "consequencia", "popularidade", "data", "piada", "influenciaid"),
+                 "noticia":           ("id", "manchete", "descricao", "consequencia", "popularidade", "data", "piada"),
                  "Influenciaexterna": ("id", "nome"),
                  "palavraschave":     ("nome, idioma"),
                  "local":             ("sigla", "nome", "complemento"),
-                 "fonteconfiavel":    ("nome", "descricao", "noticiaid"),
+                 "fonteconfiavel":    ("nome", "descricao"),
                  "ocupacao":          ("id", "emprego", "descricao"),
                  "pessoa":            ("id", "nome", "idade", "ocupacaoid"),
                  "categoriamidia":    ("id", "nome", "descricao"),
                  "midia":             ("id", "nome", "descricao", "categoriaid"),
 
-                 "midia_noticia":            ("noticiaid", "midiaid"),
-                 "palavraschave_noticia":    ("noticiaid", "palavraschaveid"),
-                 "local_noticia":            ("noticiaid", "localid"),
-                 "categorianoticia_noticia": ("noticiaid", "categorianoticia_noticia"),
-                 "autor_noticia":            ("noticiaid", "autorid"),
-                 "vitima_noticia":           ("noticiaid", "vitimaid")}
+                 "fonteconfiavel_noticia":    ("noticiaid", "fonteid")
+                 "influenciaexterna_noticia": ("noticiaid", "influenciaid")
+                 "midia_noticia":             ("noticiaid", "midiaid"),
+                 "palavraschave_noticia":     ("noticiaid", "palavraschaveid"),
+                 "local_noticia":             ("noticiaid", "localid"),
+                 "categorianoticia_noticia":  ("noticiaid", "categorianoticia_noticia"),
+                 "autor_noticia":             ("noticiaid", "autorid"),
+                 "vitima_noticia":            ("noticiaid", "vitimaid")}
 
 
 def Insert(TableName, conn, *args):
