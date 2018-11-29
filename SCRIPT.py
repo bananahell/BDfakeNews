@@ -138,18 +138,21 @@ def CreateTables(conn):
     cursor.close()
 
 
-def Insert(TableName, conn, *args):
+def Insert(TableName, connect_str, *args):
     try:
+        conn = psycopg2.connect(connect_str)
         string_args = list(map(lambda a: str(a), args))
         cursor = conn.cursor()
-        print ("ayy lmao")
         sql = """INSERT INTO """ + TableName + "(" + (", ".join(table_columns[TableName])) + ")" + " VALUES(" + (", ".join(string_args)) + """);"""
-        print (sql)
+
         cursor.execute(sql)
+        conn.commit()
+
     except Exception as e:
-        print ("Problem inserting values into " + TableName)
+        print(e)
     finally:
         cursor.close()
+        conn.close()
 
 
 
@@ -158,14 +161,13 @@ def main():
         connect_str = "dbname='Projeto' user='admin' host='localhost' password='123'"
 
         conn = psycopg2.connect(connect_str)
-        print ("antesainda")
         CreateTables(conn)
-        print ("aqui")
-        Insert("CategoriaNoticia", conn, 0, "'Violência'",
-        "'Agressão física e/ou moral a própria pessoa ou a terceiros relacionados.'")
-        print ("passou")
-
         conn.commit()
+        Insert("categorianoticia", connect_str, 0, "'Violência'",
+        "'Agressão física e/ou moral a própria pessoa ou a terceiros relacionados.'")
+        Insert("categorianoticia", connect_str, 1, "'Política'",
+        "'Gostar de ferrar a vida dos outros.'")
+
 
     except Exception as e:
         print("Uh oh, can't connect. Invalid dbname, user or password?")
