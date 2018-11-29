@@ -11,8 +11,8 @@ table_columns = {"categorianoticia":  ("id", "nome", "descricao"),
                  "categoriamidia":    ("id", "nome", "descricao"),
                  "midia":             ("id", "nome", "descricao", "categoriaid"),
 
-                 "fonteconfiavel_noticia":    ("noticiaid", "fonteid")
-                 "influenciaexterna_noticia": ("noticiaid", "influenciaid")
+                 "fonteconfiavel_noticia":    ("noticiaid", "fonteid"),
+                 "influenciaexterna_noticia": ("noticiaid", "influenciaid"),
                  "midia_noticia":             ("noticiaid", "midiaid"),
                  "palavraschave_noticia":     ("noticiaid", "palavraschaveid"),
                  "local_noticia":             ("noticiaid", "localid"),

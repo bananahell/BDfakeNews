@@ -1,24 +1,6 @@
 import psycopg2
 import Model
 
-table_columns = {"categorianoticia":  ("id", "nome", "descricao"),
-                 "noticia":           ("id", "manchete", "descricao", "consequencia", "popularidade", "data", "piada", "influenciaid"),
-                 "Influenciaexterna": ("id", "nome"),
-                 "palavraschave":     ("nome, idioma"),
-                 "local":             ("sigla", "nome", "complemento"),
-                 "fonteconfiavel":    ("nome", "descricao", "noticiaid"),
-                 "ocupacao":          ("id", "emprego", "descricao"),
-                 "pessoa":            ("id", "nome", "idade", "ocupacaoid"),
-                 "categoriamidia":    ("id", "nome", "descricao"),
-                 "midia":             ("id", "nome", "descricao", "categoriaid"),
-
-                 "midia_noticia":            ("noticiaid", "midiaid"),
-                 "palavraschave_noticia":    ("noticiaid", "palavraschaveid"),
-                 "local_noticia":            ("noticiaid", "localid"),
-                 "categorianoticia_noticia": ("noticiaid", "categorianoticia_noticia"),
-                 "autor_noticia":            ("noticiaid", "autorid"),
-                 "vitima_noticia":           ("noticiaid", "vitimaid")}
-
 def CreateTables(conn):
     cursor = conn.cursor()
 
@@ -143,7 +125,7 @@ def Insert(TableName, connect_str, *args):
         conn = psycopg2.connect(connect_str)
         string_args = list(map(lambda a: str(a), args))
         cursor = conn.cursor()
-        sql = """INSERT INTO """ + TableName + "(" + (", ".join(table_columns[TableName])) + ")" + " VALUES(" + (", ".join(string_args)) + """);"""
+        sql = """INSERT INTO """ + TableName + "(" + (", ".join(Model.table_columns[TableName])) + ")" + " VALUES(" + (", ".join(string_args)) + """);"""
 
         cursor.execute(sql)
         conn.commit()
@@ -167,6 +149,10 @@ def main():
         "'Agressão física e/ou moral a própria pessoa ou a terceiros relacionados.'")
         Insert("categorianoticia", connect_str, 1, "'Política'",
         "'Gostar de ferrar a vida dos outros.'")
+        Insert("categorianoticia", connect_str, 2, "'LALALALALA'",
+        "'AAAAAAAAAAAAAAAAAAAAAAAAA'")
+        Insert("categorianoticia", connect_str, 3, "'Quarto'",
+        "'Dado'")
 
 
     except Exception as e:
