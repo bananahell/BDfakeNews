@@ -22,7 +22,6 @@ CREATE OR REPLACE FUNCTION Insere_Noticia (id INTEGER,Manchete VARCHAR(100), Des
  
       RETURNS void AS $$
       BEGIN
-      	#IF (SELECT COUNT(*) FROM InfluenciaExterna WHERE InfluenciaExterna.Nome = Influencia)
         INSERT INTO Noticia 
         	VALUES (id,Manchete , Descricao, Consequencia, Popularidade, Data, Piada, Influencia);
       END;
