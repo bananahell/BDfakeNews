@@ -2,14 +2,15 @@ from PyQt5 import QtWidgets, QtSql
 
 table_columns = {"categorianoticia":  ("id", "nome", "descricao"),
                  "noticia":           ("id", "manchete", "descricao", "consequencia", "popularidade", "data", "piada"),
-                 "Influenciaexterna": ("id", "nome"),
-                 "palavraschave":     ("nome, idioma"),
+                 "influenciaexterna": ("id", "nome"),
+                 "palavraschave":     ("nome", "idioma"),
                  "local":             ("sigla", "nome", "complemento"),
                  "fonteconfiavel":    ("nome", "descricao"),
                  "ocupacao":          ("id", "emprego", "descricao"),
                  "pessoa":            ("id", "nome", "idade", "ocupacaoid"),
                  "categoriamidia":    ("id", "nome", "descricao"),
                  "midia":             ("id", "nome", "descricao", "categoriaid"),
+                 "idioma":            ("id", "nome"),
 
                  "fonteconfiavel_noticia":    ("noticiaid", "fonteid"),
                  "influenciaexterna_noticia": ("noticiaid", "influenciaid"),
