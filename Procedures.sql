@@ -1,3 +1,6 @@
+
+--INSERT
+
 CREATE OR REPLACE FUNCTION Insere_CategoriaNoticia(Id INTEGER, Nome VARCHAR(30), Descricao varchar(150))
  
       RETURNS void AS $$
@@ -195,3 +198,195 @@ SELECT Insere_Local_Noticia(NoticiaId,LocalId);
 SELECT Insere_CategoriaNoticia_Noticia(NoticiaId,CategoriaId);
 SELECT Insere_Autor_Noticia(NoticiaId,AutorId);
 SELECT Insere_Vitima_Noticia(NoticiaId,VitimaId);
+
+--DELETE
+CREATE OR REPLACE FUNCTION Delete_CategoriaNoticia (n INTEGER)
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  CategoriaNoticia
+      WHERE n = Id;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_InfluenciaExterna (n INTEGER)
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  InfluenciaExterna
+      WHERE n = Id;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_Noticia
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  Noticia
+      WHERE n = Id;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_Idioma (n INTEGER)
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  Idioma
+      WHERE n = Id;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_PalavrasChave (n VARCHAR(50))
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  PalavrasChave
+      WHERE n = Nome;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_Local (n CHAR(2))
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  Local
+      WHERE n = Sigla;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_FonteConfiavel (n INTEGER)
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  FonteConfiavel
+      WHERE n = Id;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_Ocupacao (n INTEGER)
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  Ocupacao
+      WHERE n = Id;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_Pessoa (n INTEGER)
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  Pessoa
+      WHERE n = Id;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_CategoriaMidia (n INTEGER)
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  CategoriaMidia
+      WHERE n = Id;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_Midia (n INTEGER)
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  Midia
+      WHERE n = Id;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_Influencia_Noticia (n INTEGER, m INTEGER)
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  Influencia_Noticia
+      WHERE n = NoticiaId AND m = InfluenciaId;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_Midia_Noticia (n INTEGER, m INTEGER)
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  Midia_Noticia
+      WHERE n = NoticiaId AND m = MidiaId;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_FonteConfiavel_Noticia (n INTEGER, m INTEGER)
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  FonteConfiavel_Noticia
+      WHERE n = NoticiaId AND m = FonteId;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_PalavrasChave_Noticia (n INTEGER, m VARCHAR(50))
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  PalavrasChave_Noticia
+      WHERE n = NoticiaId AND m = PalavrasChaveId;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_Local_Noticia (n INTEGER, m CHAR(2))
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  Local_Noticia
+      WHERE n = NoticiaId AND m = LocalId;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_CategoriaNoticia_Noticia (n INTEGER, m INTEGER)
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  CategoriaNoticia_Noticia
+      WHERE n = NoticiaId AND m = CategoriaId;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_Autor_Noticia n INTEGER, m INTEGER)
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  Autor_Noticia
+      WHERE n = NoticiaId AND m = AutorId;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+CREATE OR REPLACE FUNCTION Delete_Vitima_Noticia (n INTEGER, m INTEGER)
+ 
+  RETURNS void AS $$
+  BEGIN
+    DELETE FROM  Vitima_Noticia
+      WHERE n = NoticiaId AND m = VitimaId;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+
+SELECT Delete_CategoriaNoticia (n);
+SELECT Delete_InfluenciaExterna (n);
+SELECT Delete_Noticia (n);
+SELECT Delete_Idioma (n);
+SELECT Delete_PalavrasChave (n);
+SELECT Delete_Local (n);
+SELECT Delete_FonteConfiavel (n);
+SELECT Delete_Ocupacao (n);
+SELECT Delete_Pessoa (n);
+SELECT Delete_CategoriaMidia (n);
+SELECT Delete_Midia (n);
+SELECT Delete_Influencia_Noticia (n,m);
+SELECT Delete_Midia_Noticia (n,m);
+SELECT Delete_FonteConfiavel_Noticia (n,m);
+SELECT Delete_PalavrasChave_Noticia (n,m);
+SELECT Delete_Local_Noticia (n,m);
+SELECT Delete_CategoriaNoticia_Noticia (n,m);
+SELECT Delete_Autor_Noticia (n,m);
+SELECT Delete_Vitima_Noticia (n,m);
