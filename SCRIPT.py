@@ -152,10 +152,10 @@ def main():
         CreateTables(conn)
         conn.commit()
 
-        Insert("categorianoticia", connect_str, 0, "'Violência'", "'Agressão física e/ou moral a própria pessoa ou a terceiros relacionados.'")
-        Insert("categorianoticia", connect_str, 1, "'Política'", "'Escândalo de teor político.'")
-        Insert("categorianoticia", connect_str, 2, "'Corrupção'", "'Roubo ou desvio de verba pública.'")
-        Insert("categorianoticia", connect_str, 3, "'Escândalo'", "'Notícia pejorativa.'")
+        Insert("categorianoticia", connect_str, 0, "'Violência'", "'Agressão física e/ou moral a própria pessoa ou a terceiros relacionados.'");
+        Insert("categorianoticia", connect_str, 1, "'Política'", "'Escândalo de teor político.'");
+        Insert("categorianoticia", connect_str, 2, "'Corrupção'", "'Roubo ou desvio de verba pública.'");
+        Insert("categorianoticia", connect_str, 3, "'Escândalo'", "'Notícia pejorativa.'");
 
         Insert("noticia", connect_str, 0, "'Corrupção'", "'Acusado de desviar verba publica.'", "'perde confiança do povo'", 80, "'2018-10-12'", "false");
         Insert("noticia", connect_str, 1, "'Crime'", "'Acusado de agredir outro político.'", "'odiado pela câmara'", 80, "'2018-10-12'", "false");
@@ -164,29 +164,29 @@ def main():
         Insert("noticia", connect_str, 4, "'Assassinato'", "'Acusado de matar o senador.'", "'Sanidade é posta em dúvida.'", 80, "'2018-10-12'", "false");
         Insert("noticia", connect_str, 5, "'Escravidão'", "'Acusado de importar escravos chineses.'", "'Advogados vão ao museu olhar a Carta Aurea.'", 80, "'2018-10-12'", "false");
 
-        Insert("influenciaexterna", connect_str, 0, "'Russos'")
-        Insert("influenciaexterna", connect_str, 1, "'Bolivianos'")
-        Insert("influenciaexterna", connect_str, 2, "'Cubanos'")
-        Insert("influenciaexterna", connect_str, 3, "'Americanos'")
-        Insert("influenciaexterna", connect_str, 4, "'Colombianos'")
-        Insert("influenciaexterna", connect_str, 5, "'Portugueses'")
+        Insert("influenciaexterna", connect_str, 0, "'Russos'");
+        Insert("influenciaexterna", connect_str, 1, "'Bolivianos'");
+        Insert("influenciaexterna", connect_str, 2, "'Cubanos'");
+        Insert("influenciaexterna", connect_str, 3, "'Americanos'");
+        Insert("influenciaexterna", connect_str, 4, "'Colombianos'");
+        Insert("influenciaexterna", connect_str, 5, "'Portugueses'");
 
-        Insert("idioma", connect_str, 0, "'Português'")
-        Insert("idioma", connect_str, 1, "'Inglês'")
-        Insert("idioma", connect_str, 2, "'Russo'")
+        Insert("idioma", connect_str, 0, "'Português'");
+        Insert("idioma", connect_str, 1, "'Inglês'");
+        Insert("idioma", connect_str, 2, "'Russo'");
 
-        Insert("palavraschave", connect_str, "'Corrupção'", 0)
-        Insert("palavraschave", connect_str, "'Desvio de verba'", 0)
-        Insert("palavraschave", connect_str, "'Lavagem de dinheiro'", 0)
-        Insert("palavraschave", connect_str, "'Formação de quadrilha'", 0)
-        Insert("palavraschave", connect_str, "'Corrupção passiva'", 0)
-        Insert("palavraschave", connect_str, "'Irresponsabilidade pública'", 0)
+        Insert("palavraschave", connect_str, "'Corrupção'", 0);
+        Insert("palavraschave", connect_str, "'Desvio de verba'", 0);
+        Insert("palavraschave", connect_str, "'Lavagem de dinheiro'", 0);
+        Insert("palavraschave", connect_str, "'Formação de quadrilha'", 0);
+        Insert("palavraschave", connect_str, "'Corrupção passiva'", 0);
+        Insert("palavraschave", connect_str, "'Irresponsabilidade pública'", 0);
 
-        Insert("local", connect_str, "'DF'", "'Distrito Federal'", "'MDB'")
-        Insert("local", connect_str, "'SP'", "'São Paulo'", "'PSB'")
-        Insert("local", connect_str, "'RJ'", "'Rio de Janeiro'", "'MDB'")
-        Insert("local", connect_str, "'MG'", "'Minas Gerais'", "'PSDB'")
-        Insert("local", connect_str, "'PB'", "'Paraíba'", "'PSB'")
+        Insert("local", connect_str, "'DF'", "'Distrito Federal'", "'MDB'");
+        Insert("local", connect_str, "'SP'", "'São Paulo'", "'PSB'");
+        Insert("local", connect_str, "'RJ'", "'Rio de Janeiro'", "'MDB'");
+        Insert("local", connect_str, "'MG'", "'Minas Gerais'", "'PSDB'");
+        Insert("local", connect_str, "'PB'", "'Paraíba'", "'PSB'");
 
         # Insert("fonteconfiavel", connect_str, "'nome'", "'descricao'")
 
@@ -204,11 +204,11 @@ def main():
         Insert("pessoa", connect_str, 5, "'Marcos'", 35, 2);
         Insert("pessoa", connect_str, 6, "'Marcelo'", 40, 3);
 
-        Insert("categoriamidia", connect_str, 0, "'Televisão'", "'Comentaristas e jornais.'")
-        Insert("categoriamidia", connect_str, 1, "'Revistas'", "'Opiniões de autores conhecidos.'")
-        Insert("categoriamidia", connect_str, 2, "'Redes Sociais'", "'Facebook, Whats App, dentre outros.'")
-        Insert("categoriamidia", connect_str, 3, "'Rádio'", "'Comentaristas do dia a dia'")
-        Insert("categoriamidia", connect_str, 4, "'Blogs'", "'Artigos com opiniões dos autores'")
+        Insert("categoriamidia", connect_str, 0, "'Televisão'", "'Comentaristas e jornais.'");
+        Insert("categoriamidia", connect_str, 1, "'Revistas'", "'Opiniões de autores conhecidos.'");
+        Insert("categoriamidia", connect_str, 2, "'Redes Sociais'", "'Facebook, Whats App, dentre outros.'");
+        Insert("categoriamidia", connect_str, 3, "'Rádio'", "'Comentaristas do dia a dia'");
+        Insert("categoriamidia", connect_str, 4, "'Blogs'", "'Artigos com opiniões dos autores'");
 
         Insert("autor_noticia", connect_str, 4, 3);
         Insert("autor_noticia", connect_str, 3, 3);
@@ -221,6 +221,58 @@ def main():
         Insert("vitima_noticia", connect_str, 1, 1);
         Insert("vitima_noticia", connect_str, 0, 1);
         Insert("vitima_noticia", connect_str, 2, 6);
+
+
+###########################################################################################################################################
+        Insert("categorianoticia", connect_str, 4, "'Difamação'", "'Notícia com intuito de prejudicar a imagem frente ao povo.'")
+
+        Insert("FonteConfiavel", connect_str, 0,"'Anonimus'", "'Grupo hacker que resoveu fornecer informações'");
+        Insert("FonteConfiavel", connect_str, 1,"'Repórter'", "'O repórter que divulgou a notícia descobriu/confessou que a notícia é falsa'");
+        Insert("FonteConfiavel", connect_str, 2,"'Testemunhas'", "'Testemunhas do ocorrido relatam a verdade'");
+        Insert("FonteConfiavel", connect_str, 3,"'Polícia'", "'A polícia investigou e descobriu a verdade'");
+        Insert("FonteConfiavel", connect_str, 4,"'Divisão de inteligência'", "'A divisão de inteligência e espionagem descobriu a verdade'");
+
+        Insert("FonteConfiavel_Noticia", connect_str, 0,0);
+        Insert("FonteConfiavel_Noticia", connect_str, 4,1);
+        Insert("FonteConfiavel_Noticia", connect_str, 1,2);
+        Insert("FonteConfiavel_Noticia", connect_str, 5,3);
+        Insert("FonteConfiavel_Noticia", connect_str, 1,4);
+
+        Insert("Midia", connect_str, 0,"'Jornal Nacional'","'Jornal na televisão da Rede Globo'");
+        Insert("Midia", connect_str, 1,"'Veja'","'Revista Veja'");
+        Insert("Midia", connect_str, 2,"'Facebook'","'Rede social autamente popular'");
+        Insert("Midia", connect_str, 3,"'JustiçaFM'","'Rádio do justiceiro, que não investiga nada antes de publicar noticias'");
+        Insert("Midia", connect_str, 4,"'O Caozeiro'","'Blog conhecido por passar noticias engraçadas, independente da veracidade delas.'");
+
+        Insert("Influencia_Noticia", connect_str, 0,1);
+        Insert("Influencia_Noticia", connect_str, 1,0);
+        Insert("Influencia_Noticia", connect_str, 2,2);
+        Insert("Influencia_Noticia", connect_str, 3,4);
+        Insert("Influencia_Noticia", connect_str, 4,3);
+
+        Insert("Midia_Noticia", connect_str, 0,0);
+        Insert("Midia_Noticia", connect_str, 1,3);
+        Insert("Midia_Noticia", connect_str, 2,2);
+        Insert("Midia_Noticia", connect_str, 3,3);
+        Insert("Midia_Noticia", connect_str, 4,4);
+
+        Insert("PalavrasChave_Noticia", connect_str, 0,"'Irresponsabilidade pública'");
+        Insert("PalavrasChave_Noticia", connect_str, 1,"'Irresponsabilidade pública'");
+        Insert("PalavrasChave_Noticia", connect_str, 2,"'Irresponsabilidade pública'");
+        Insert("PalavrasChave_Noticia", connect_str, 3,"'Irresponsabilidade pública'");
+        Insert("PalavrasChave_Noticia", connect_str, 4,"'Irresponsabilidade pública'");
+
+        Insert("CategoriaNoticia_Noticia", connect_str, 0,2);
+        Insert("CategoriaNoticia_Noticia", connect_str, 1,0);
+        Insert("CategoriaNoticia_Noticia", connect_str, 2,3);
+        Insert("CategoriaNoticia_Noticia", connect_str, 3,4);
+        Insert("CategoriaNoticia_Noticia", connect_str, 4,0);
+
+        Insert("Local_Noticia", connect_str, 0,"'DF'");
+        Insert("Local_Noticia", connect_str, 1,"'DF'");
+        Insert("Local_Noticia", connect_str, 2,"'DF'");
+        Insert("Local_Noticia", connect_str, 3,"'DF'");
+        Insert("Local_Noticia", connect_str, 4,"'DF'");
 
     except Exception as e:
         print("Uh oh, can't connect. Invalid dbname, user or password?")
