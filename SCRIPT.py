@@ -549,6 +549,7 @@ def main():
         Insert("categorianoticia", connect_str, 2, "'Corrupção'", "'Roubo ou desvio de verba pública.'")
         Insert("categorianoticia", connect_str, 3, "'Escândalo'", "'Notícia pejorativa.'")
         Insert("categorianoticia", connect_str, 4, "'Difamação'", "'Notícia com intuito de prejudicar a imagem frente ao povo.'")
+        Insert("categorianoticia", connect_str, 5, "'Crime'", "'Atividade criminosa da vítima da notícia.'")
 
         Insert("noticia", connect_str, 0, "'Corrupção'", "'Acusado de desviar verba publica.'", "'perde confiança do povo'", 80, "'2018-10-12'", "false")
         Insert("noticia", connect_str, 1, "'Crime'", "'Acusado de agredir outro político.'", "'odiado pela câmara'", 80, "'2018-10-12'", "false")
@@ -556,6 +557,7 @@ def main():
         Insert("noticia", connect_str, 3, "'Crime contra animais'", "'Acusado de comparar a Dilma a um animal.'", "'adorado pelas massas.'", 100, "'2018-10-12'", "false")
         Insert("noticia", connect_str, 4, "'Assassinato'", "'Acusado de matar o senador.'", "'Sanidade é posta em dúvida.'", 80, "'2018-10-12'", "false")
         Insert("noticia", connect_str, 5, "'Escravidão'", "'Acusado de importar escravos chineses.'", "'Advogados vão ao museu olhar a Carta Aurea.'", 80, "'2018-10-12'", "false")
+        Insert("noticia", connect_str, 6, "'Esposa do Temer'", "'Temer está sendo acusado de estar sendo chifrado por sua esposa com a esposa do Bolsonaro.'", "'Belas e recatadas dos lares brasileiros estão preocupadas'", 100, "'2018-12-03'", "false")
 
         Insert("influenciaexterna", connect_str, 0, "'Russos'")
         Insert("influenciaexterna", connect_str, 1, "'Bolivianos'")
@@ -567,6 +569,9 @@ def main():
         Insert("idioma", connect_str, 0, "'Português'")
         Insert("idioma", connect_str, 1, "'Inglês'")
         Insert("idioma", connect_str, 2, "'Russo'")
+        Insert("idioma", connect_str, 3, "'Alemão'")
+        Insert("idioma", connect_str, 4, "'Chinês'")
+        Insert("idioma", connect_str, 5, "'Espanhol'")
 
         Insert("palavraschave", connect_str, "'Corrupção'", 0)
         Insert("palavraschave", connect_str, "'Desvio de verba'", 0)
@@ -574,6 +579,8 @@ def main():
         Insert("palavraschave", connect_str, "'Formação de quadrilha'", 0)
         Insert("palavraschave", connect_str, "'Corrupção passiva'", 0)
         Insert("palavraschave", connect_str, "'Irresponsabilidade pública'", 0)
+        Insert("palavraschave", connect_str, "'Fake news'", 1);
+        Insert("palavraschave", connect_str, "'Morte'", 0);
 
         Insert("local", connect_str, "'DF'", "'Distrito Federal'", "'MDB'")
         Insert("local", connect_str, "'SP'", "'São Paulo'", "'PSB'")
@@ -586,6 +593,10 @@ def main():
         Insert("ocupacao", connect_str, 2, "'Presidente'", "'Líder da nação'")
         Insert("ocupacao", connect_str, 3, "'Deputado'", "'Representante do povo de um Estado da Federação'")
         Insert("ocupacao", connect_str, 4, "'Senador'", "'Representante de um Estado da Federação'")
+        Insert("ocupacao", connect_str, 5, "'Professor'", "'Ocupação mais subestimada'");
+        Insert("ocupacao", connect_str, 6, "'Prefeito'", "'Representante de uma prefeitura'");
+        Insert("ocupacao", connect_str, 7, "'Secretário'", "'Ajudante de outros cargos'");
+        Insert("ocupacao", connect_str, 8, "'Juiz'", "'Sistema judiciário brasileiro'");
 
         Insert("pessoa", connect_str, 0, "'Lance'", 20, 0)
         Insert("pessoa", connect_str, 1, "'Eduardo'", 19, 3)
@@ -594,6 +605,12 @@ def main():
         Insert("pessoa", connect_str, 4, "'Jão'", 30, 3)
         Insert("pessoa", connect_str, 5, "'Marcos'", 35, 2)
         Insert("pessoa", connect_str, 6, "'Marcelo'", 40, 3)
+        Insert("pessoa", connect_str, 7, "'Maria'", 12, "null");
+        Insert("pessoa", connect_str, 8, "'Joana'", 30, 5);
+        Insert("pessoa", connect_str, 9, "'Temer'", 40, 2);
+        Insert("pessoa", connect_str, 10, "'Lula'", 40, 2);
+        Insert("pessoa", connect_str, 11, "'Bolsonaro'", 40, 2);
+        Insert("pessoa", connect_str, 12, "'Maristela'", 25, 5);
 
         Insert("categoriamidia", connect_str, 0, "'Televisão'", "'Comentaristas e jornais.'")
         Insert("categoriamidia", connect_str, 1, "'Revistas'", "'Opiniões de autores conhecidos.'")
@@ -601,29 +618,11 @@ def main():
         Insert("categoriamidia", connect_str, 3, "'Rádio'", "'Comentaristas do dia a dia'")
         Insert("categoriamidia", connect_str, 4, "'Blogs'", "'Artigos com opiniões dos autores'")
 
-        Insert("autor_noticia", connect_str, 4, 3)
-        Insert("autor_noticia", connect_str, 3, 3)
-        Insert("autor_noticia", connect_str, 1, 5)
-        Insert("autor_noticia", connect_str, 0, 5)
-        Insert("autor_noticia", connect_str, 2, 4)
-
-        Insert("vitima_noticia", connect_str, 4, 0)
-        Insert("vitima_noticia", connect_str, 3, 2)
-        Insert("vitima_noticia", connect_str, 1, 1)
-        Insert("vitima_noticia", connect_str, 0, 1)
-        Insert("vitima_noticia", connect_str, 2, 6)
-
         Insert("fonteconfiavel", connect_str, 0, "'Anonimus'", "'Grupo hacker que resoveu fornecer informações'")
         Insert("fonteconfiavel", connect_str, 1, "'Repórter'", "'O repórter que divulgou a notícia descobriu/confessou que a notícia é falsa'")
         Insert("fonteconfiavel", connect_str, 2, "'Testemunhas'", "'Testemunhas do ocorrido relatam a verdade'")
         Insert("fonteconfiavel", connect_str, 3, "'Polícia'", "'A polícia investigou e descobriu a verdade'")
         Insert("fonteconfiavel", connect_str, 4, "'Divisão de inteligência'", "'A divisão de inteligência e espionagem descobriu a verdade'")
-
-        Insert("fonteconfiavel_noticia", connect_str, 0, 0)
-        Insert("fonteconfiavel_noticia", connect_str, 4, 1)
-        Insert("fonteconfiavel_noticia", connect_str, 1, 2)
-        Insert("fonteconfiavel_noticia", connect_str, 5, 3)
-        Insert("fonteconfiavel_noticia", connect_str, 1, 4)
 
         Insert("midia", connect_str, 0, "'Jornal Nacional'", "'Jornal na televisão da Rede Globo'", 0)
         Insert("midia", connect_str, 1, "'Veja'", "'Revista Veja'", 2)
@@ -660,6 +659,37 @@ def main():
         Insert("local_noticia", connect_str, 2, "'DF'")
         Insert("local_noticia", connect_str, 3, "'DF'")
         Insert("local_noticia", connect_str, 4, "'DF'")
+
+        Insert("autor_noticia", connect_str, 4, 3)
+        Insert("autor_noticia", connect_str, 3, 3)
+        Insert("autor_noticia", connect_str, 1, 5)
+        Insert("autor_noticia", connect_str, 0, 5)
+        Insert("autor_noticia", connect_str, 2, 4)
+        Insert("autor_noticia", connect_str, 2, 2)
+        Insert("autor_noticia", connect_str, 2, 6)
+        Insert("autor_noticia", connect_str, 6, 8)
+        Insert("autor_noticia", connect_str, 0, 2)
+        Insert("autor_noticia", connect_str, 1, 9)
+        Insert("autor_noticia", connect_str, 5, 11)
+
+        Insert("vitima_noticia", connect_str, 4, 0)
+        Insert("vitima_noticia", connect_str, 3, 2)
+        Insert("vitima_noticia", connect_str, 1, 1)
+        Insert("vitima_noticia", connect_str, 0, 1)
+        Insert("vitima_noticia", connect_str, 2, 6)
+        Insert("vitima_noticia", connect_str, 4, 12)
+        Insert("vitima_noticia", connect_str, 2, 2)
+        Insert("vitima_noticia", connect_str, 5, 6)
+        Insert("vitima_noticia", connect_str, 1, 8)
+        Insert("vitima_noticia", connect_str, 0, 2)
+        Insert("vitima_noticia", connect_str, 6, 9)
+        Insert("vitima_noticia", connect_str, 2, 11)
+
+        Insert("fonteconfiavel_noticia", connect_str, 0, 0)
+        Insert("fonteconfiavel_noticia", connect_str, 4, 1)
+        Insert("fonteconfiavel_noticia", connect_str, 1, 2)
+        Insert("fonteconfiavel_noticia", connect_str, 5, 3)
+        Insert("fonteconfiavel_noticia", connect_str, 1, 4)
 
     except Exception as e:
         print("Uh oh, can't connect. Invalid dbname, user or password?")
