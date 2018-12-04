@@ -8,7 +8,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets, QtSql
 import Controller
-import Model
 import psycopg2
 from PyQt5.QtCore import Qt
 
@@ -24,7 +23,7 @@ table_columns_tabs = {(0, 0, 0): "categorianoticia",
                     (0, 0, 9): "influenciaexterna",
                     (0, 0, 10): "idioma",
 
-                    (1, 1, 0): "full_Noticia",
+                    (1, 0, 0): "full_Noticia",
                     (1, 1, 0): "autor_Vitima",
                     (1, 2, 0): "pessoa_Ocupacao",
                     (1, 3, 0): "midia_CategoriaM",
@@ -260,10 +259,419 @@ class Ui_MainWindow(object):
 
     
     def clickdeleterelational(self):
-        self.tabsInsertion.clear()
+        self.tabsDeletion.clear()
 
         self.where = 2
         self.page = 0
+
+        connect_str = "dbname='Projeto' user='admin' host='localhost' password='123'"
+
+        conn = psycopg2.connect(connect_str)
+
+        self.autor_noticia_2 = QtWidgets.QWidget()
+        self.autor_noticia_2.setEnabled(True)
+        self.autor_noticia_2.setObjectName("autor_noticia_2")
+
+        self.searchLabel_autorid = QtWidgets.QLabel(
+            self.autor_noticia_2)
+        self.searchLabel_autorid.setGeometry(
+            QtCore.QRect(10, 85, 130, 20))
+        self.searchLabel_autorid.setObjectName(
+            "searchLabel_autorid")
+
+        self.searchLabel_noticiaid = QtWidgets.QLabel(
+            self.autor_noticia_2)
+        self.searchLabel_noticiaid.setGeometry(
+            QtCore.QRect(10, 35, 130, 20))
+        self.searchLabel_noticiaid.setObjectName(
+            "searchLabel_noticiaid")
+
+        self.spinBox_autorid = QtWidgets.QSpinBox(self.autor_noticia_2)
+        self.spinBox_autorid.setGeometry(132, 83, 61, 27)
+        self.spinBox_autorid.setMaximum(
+            Controller.ControllerCountTable("pessoa", conn) - 1)
+        self.spinBox_autorid.setObjectName("spinBox_autorid")
+
+        self.spinBox_noticiaid = QtWidgets.QSpinBox(self.autor_noticia_2)
+        self.spinBox_noticiaid.setGeometry(140, 33, 61, 27)
+        self.spinBox_noticiaid.setMaximum(
+            Controller.ControllerCountTable("noticia", conn) - 1)
+        self.spinBox_noticiaid.setObjectName("spinBox_noticiaid")
+
+        self.submitButton_autor_noticia = QtWidgets.QPushButton(
+            self.autor_noticia_2)
+        self.submitButton_autor_noticia.setGeometry(
+            QtCore.QRect(20, 120, 101, 29))
+        self.submitButton_autor_noticia.setObjectName(
+            "submitButton_autor_noticia")
+        self.submitButton_autor_noticia.clicked.connect(self.clicksubmitdelete)
+
+        self.tabsDeletion.addTab(self.autor_noticia_2, "")
+
+        self.vitima_noticia_2 = QtWidgets.QWidget()
+        self.vitima_noticia_2.setEnabled(True)
+        self.vitima_noticia_2.setObjectName("vitima_noticia_2")
+
+        self.searchLabel_vitimaid = QtWidgets.QLabel(
+            self.vitima_noticia_2)
+        self.searchLabel_vitimaid.setGeometry(
+            QtCore.QRect(10, 85, 130, 20))
+        self.searchLabel_vitimaid.setObjectName(
+            "searchLabel_vitimaid")
+
+        self.searchLabel_noticiaid_2 = QtWidgets.QLabel(
+            self.vitima_noticia_2)
+        self.searchLabel_noticiaid_2.setGeometry(
+            QtCore.QRect(10, 35, 130, 20))
+        self.searchLabel_noticiaid_2.setObjectName(
+            "searchLabel_noticiaid_2")
+
+        self.spinBox_vitimaid = QtWidgets.QSpinBox(self.vitima_noticia_2)
+        self.spinBox_vitimaid.setGeometry(132, 83, 61, 27)
+        self.spinBox_vitimaid.setMaximum(
+            Controller.ControllerCountTable("pessoa", conn) - 1)
+        self.spinBox_vitimaid.setObjectName("spinBox_vitimaid")
+
+        self.spinBox_noticiaid_2 = QtWidgets.QSpinBox(self.vitima_noticia_2)
+        self.spinBox_noticiaid_2.setGeometry(140, 33, 61, 27)
+        self.spinBox_noticiaid_2.setMaximum(
+            Controller.ControllerCountTable("noticia", conn) - 1)
+        self.spinBox_noticiaid_2.setObjectName("spinBox_noticiaid")
+
+        self.submitButton_vitima_noticia = QtWidgets.QPushButton(
+            self.vitima_noticia_2)
+        self.submitButton_vitima_noticia.setGeometry(
+            QtCore.QRect(20, 120, 101, 29))
+        self.submitButton_vitima_noticia.setObjectName(
+            "submitButton_vitima_noticia")
+        self.submitButton_vitima_noticia.clicked.connect(
+            self.clicksubmitdelete)
+
+        self.tabsDeletion.addTab(self.vitima_noticia_2, "")
+
+        self.influencia_noticia_2 = QtWidgets.QWidget()
+        self.influencia_noticia_2.setEnabled(True)
+        self.influencia_noticia_2.setObjectName("influencia_noticia_2")
+
+        self.searchLabel_influenciaid = QtWidgets.QLabel(
+            self.influencia_noticia_2)
+        self.searchLabel_influenciaid.setGeometry(
+            QtCore.QRect(10, 85, 143, 20))
+        self.searchLabel_influenciaid.setObjectName(
+            "searchLabel_influencia")
+
+        self.searchLabel_noticiaid_3 = QtWidgets.QLabel(
+            self.influencia_noticia_2)
+        self.searchLabel_noticiaid_3.setGeometry(
+            QtCore.QRect(10, 35, 130, 20))
+        self.searchLabel_noticiaid_3.setObjectName(
+            "searchLabel_noticiaid_3")
+
+        self.spinBox_influenciaid = QtWidgets.QSpinBox(
+            self.influencia_noticia_2)
+        self.spinBox_influenciaid.setGeometry(158, 83, 61, 27)
+        self.spinBox_influenciaid.setMaximum(
+            Controller.ControllerCountTable("influenciaexterna", conn) - 1)
+        self.spinBox_vitimaid.setObjectName("spinBox_influenciaid")
+
+        self.spinBox_noticiaid_3 = QtWidgets.QSpinBox(
+            self.influencia_noticia_2)
+        self.spinBox_noticiaid_3.setGeometry(140, 33, 61, 27)
+        self.spinBox_noticiaid_3.setMaximum(
+            Controller.ControllerCountTable("noticia", conn) - 1)
+        self.spinBox_noticiaid_2.setObjectName("spinBox_noticiaid")
+
+        self.submitButton_influencia_noticia = QtWidgets.QPushButton(
+            self.influencia_noticia_2)
+        self.submitButton_influencia_noticia.setGeometry(
+            QtCore.QRect(20, 120, 101, 29))
+        self.submitButton_influencia_noticia.setObjectName(
+            "submitButton_influencia_noticia")
+        self.submitButton_influencia_noticia.clicked.connect(
+            self.clicksubmitdelete)
+
+        self.tabsDeletion.addTab(self.influencia_noticia_2, "")
+
+        self.midia_noticia_2 = QtWidgets.QWidget()
+        self.midia_noticia_2.setEnabled(True)
+        self.midia_noticia_2.setObjectName("midia_noticia_2")
+
+        self.searchLabel_midiaid = QtWidgets.QLabel(
+            self.midia_noticia_2)
+        self.searchLabel_midiaid.setGeometry(
+            QtCore.QRect(10, 85, 130, 20))
+        self.searchLabel_midiaid.setObjectName(
+            "searchLabel_midiaid")
+
+        self.searchLabel_noticiaid_4 = QtWidgets.QLabel(
+            self.midia_noticia_2)
+        self.searchLabel_noticiaid_4.setGeometry(
+            QtCore.QRect(10, 35, 130, 20))
+        self.searchLabel_noticiaid_4.setObjectName(
+            "searchLabel_noticiaid_4")
+
+        self.spinBox_midiaid = QtWidgets.QSpinBox(self.midia_noticia_2)
+        self.spinBox_midiaid.setGeometry(132, 83, 61, 27)
+        self.spinBox_midiaid.setMaximum(
+            Controller.ControllerCountTable("midia", conn) - 1)
+        self.spinBox_midiaid.setObjectName("spinBox_midiaid")
+
+        self.spinBox_noticiaid_4 = QtWidgets.QSpinBox(self.midia_noticia_2)
+        self.spinBox_noticiaid_4.setGeometry(140, 33, 61, 27)
+        self.spinBox_noticiaid_4.setMaximum(
+            Controller.ControllerCountTable("noticia", conn) - 1)
+        self.spinBox_noticiaid_4.setObjectName("spinBox_noticiaid")
+
+        self.submitButton_midia_noticia = QtWidgets.QPushButton(
+            self.midia_noticia_2)
+        self.submitButton_midia_noticia.setGeometry(
+            QtCore.QRect(20, 120, 101, 29))
+        self.submitButton_midia_noticia.setObjectName(
+            "submitButton_midia_noticia")
+        self.submitButton_midia_noticia.clicked.connect(self.clicksubmitdelete)
+
+        self.tabsDeletion.addTab(self.midia_noticia_2, "")
+
+        self.fonteconfiavel_noticia_2 = QtWidgets.QWidget()
+        self.fonteconfiavel_noticia_2.setEnabled(True)
+        self.fonteconfiavel_noticia_2.setObjectName("fonteconfiavel_noticia_2")
+
+        self.searchLabel_fonteid = QtWidgets.QLabel(
+            self.fonteconfiavel_noticia_2)
+        self.searchLabel_fonteid.setGeometry(
+            QtCore.QRect(10, 85, 182, 20))
+        self.searchLabel_fonteid.setObjectName(
+            "searchLabel_fonteid")
+
+        self.searchLabel_noticiaid_5 = QtWidgets.QLabel(
+            self.fonteconfiavel_noticia_2)
+        self.searchLabel_noticiaid_5.setGeometry(
+            QtCore.QRect(10, 35, 130, 20))
+        self.searchLabel_noticiaid_5.setObjectName(
+            "searchLabel_noticiaid_5")
+
+        self.spinBox_fonteid = QtWidgets.QSpinBox(
+            self.fonteconfiavel_noticia_2)
+        self.spinBox_fonteid.setGeometry(199, 83, 61, 27)
+        self.spinBox_fonteid.setMaximum(
+            Controller.ControllerCountTable("fonteconfiavel", conn) - 1)
+        self.spinBox_fonteid.setObjectName("spinBox_fonteid")
+
+        self.spinBox_noticiaid_5 = QtWidgets.QSpinBox(
+            self.fonteconfiavel_noticia_2)
+        self.spinBox_noticiaid_5.setGeometry(140, 33, 61, 27)
+        self.spinBox_noticiaid_5.setMaximum(
+            Controller.ControllerCountTable("noticia", conn) - 1)
+        self.spinBox_noticiaid_5.setObjectName("spinBox_noticiaid")
+
+        self.submitButton_fonteconfiavel_noticia = QtWidgets.QPushButton(
+            self.fonteconfiavel_noticia_2)
+        self.submitButton_fonteconfiavel_noticia.setGeometry(
+            QtCore.QRect(20, 120, 101, 29))
+        self.submitButton_fonteconfiavel_noticia.setObjectName(
+            "submitButton_fonteconfiavel_noticia")
+        self.submitButton_fonteconfiavel_noticia.clicked.connect(
+            self.clicksubmitdelete)
+
+        self.tabsDeletion.addTab(self.fonteconfiavel_noticia_2, "")
+
+        self.palavraschave_noticia_2 = QtWidgets.QWidget()
+        self.palavraschave_noticia_2.setEnabled(True)
+        self.palavraschave_noticia_2.setObjectName("palavraschave_noticia_2")
+
+        self.searchLabel_palavraschaveid = QtWidgets.QLabel(
+            self.palavraschave_noticia_2)
+        self.searchLabel_palavraschaveid.setGeometry(
+            QtCore.QRect(10, 85, 182, 20))
+        self.searchLabel_palavraschaveid.setObjectName(
+            "searchLabel_palavraschaveid")
+
+        self.searchLabel_noticiaid_6 = QtWidgets.QLabel(
+            self.palavraschave_noticia_2)
+        self.searchLabel_noticiaid_6.setGeometry(
+            QtCore.QRect(10, 35, 130, 20))
+        self.searchLabel_noticiaid_6.setObjectName(
+            "searchLabel_noticiaid_6")
+
+        self.searchField_palavraschaveid = QtWidgets.QLineEdit(
+            self.palavraschave_noticia_2)
+        self.searchField_palavraschaveid.setGeometry(
+            QtCore.QRect(120, 83, 120, 29))
+        self.searchField_palavraschaveid.setObjectName(
+            "searchField_palavraschaveid")
+
+        self.spinBox_noticiaid_6 = QtWidgets.QSpinBox(
+            self.palavraschave_noticia_2)
+        self.spinBox_noticiaid_6.setGeometry(140, 33, 61, 27)
+        self.spinBox_noticiaid_6.setMaximum(
+            Controller.ControllerCountTable("noticia", conn) - 1)
+        self.spinBox_noticiaid_6.setObjectName("spinBox_noticiaid")
+
+        self.submitButton_palavraschave_noticia = QtWidgets.QPushButton(
+            self.palavraschave_noticia_2)
+        self.submitButton_palavraschave_noticia.setGeometry(
+            QtCore.QRect(20, 120, 101, 29))
+        self.submitButton_palavraschave_noticia.setObjectName(
+            "submitButton_palavraschave_noticia")
+        self.submitButton_palavraschave_noticia.clicked.connect(
+            self.clicksubmitdelete)
+
+        self.tabsDeletion.addTab(self.palavraschave_noticia_2, "")
+
+        self.local_noticia_2 = QtWidgets.QWidget()
+        self.local_noticia_2.setEnabled(True)
+        self.local_noticia_2.setObjectName("local_noticia_2")
+
+        self.searchLabel_localid = QtWidgets.QLabel(
+            self.local_noticia_2)
+        self.searchLabel_localid.setGeometry(
+            QtCore.QRect(10, 85, 182, 20))
+        self.searchLabel_localid.setObjectName(
+            "searchLabel_localid")
+
+        self.searchLabel_noticiaid_7 = QtWidgets.QLabel(
+            self.local_noticia_2)
+        self.searchLabel_noticiaid_7.setGeometry(
+            QtCore.QRect(10, 35, 130, 20))
+        self.searchLabel_noticiaid_7.setObjectName(
+            "searchLabel_noticiaid_7")
+
+        self.searchField_localid = QtWidgets.QLineEdit(
+            self.local_noticia_2)
+        self.searchField_localid.setGeometry(
+            QtCore.QRect(65, 83, 120, 29))
+        self.searchField_localid.setObjectName(
+            "searchField_localid")
+
+        self.spinBox_noticiaid_7 = QtWidgets.QSpinBox(
+            self.local_noticia_2)
+        self.spinBox_noticiaid_7.setGeometry(140, 33, 61, 27)
+        self.spinBox_noticiaid_7.setMaximum(
+            Controller.ControllerCountTable("noticia", conn) - 1)
+        self.spinBox_noticiaid_7.setObjectName("spinBox_noticiaid")
+
+        self.submitButton_local_noticia = QtWidgets.QPushButton(
+            self.local_noticia_2)
+        self.submitButton_local_noticia.setGeometry(
+            QtCore.QRect(20, 120, 101, 29))
+        self.submitButton_local_noticia.setObjectName(
+            "submitButton_local_noticia")
+        self.submitButton_local_noticia.clicked.connect(
+            self.clicksubmitdelete)
+
+        self.tabsDeletion.addTab(self.local_noticia_2, "")
+
+        self.categorianoticia_noticia_2 = QtWidgets.QWidget()
+        self.categorianoticia_noticia_2.setEnabled(True)
+        self.categorianoticia_noticia_2.setObjectName(
+            "categorianoticia_noticia_2")
+
+        self.searchLabel_categoriaid = QtWidgets.QLabel(
+            self.categorianoticia_noticia_2)
+        self.searchLabel_categoriaid.setGeometry(
+            QtCore.QRect(10, 85, 182, 20))
+        self.searchLabel_categoriaid.setObjectName(
+            "searchLabel_categoriaid")
+
+        self.searchLabel_noticiaid_8 = QtWidgets.QLabel(
+            self.categorianoticia_noticia_2)
+        self.searchLabel_noticiaid_8.setGeometry(
+            QtCore.QRect(10, 35, 130, 20))
+        self.searchLabel_noticiaid_8.setObjectName(
+            "searchLabel_noticiaid_8")
+
+        self.spinBox_categoriaid = QtWidgets.QSpinBox(
+            self.categorianoticia_noticia_2)
+        self.spinBox_categoriaid.setGeometry(96, 83, 61, 27)
+        self.spinBox_categoriaid.setMaximum(
+            Controller.ControllerCountTable("categorianoticia", conn) - 1)
+        self.spinBox_categoriaid.setObjectName("spinBox_categoriaid")
+
+        self.spinBox_noticiaid_8 = QtWidgets.QSpinBox(
+            self.categorianoticia_noticia_2)
+        self.spinBox_noticiaid_8.setGeometry(140, 33, 61, 27)
+        self.spinBox_noticiaid_8.setMaximum(
+            Controller.ControllerCountTable("noticia", conn) - 1)
+        self.spinBox_noticiaid_8.setObjectName("spinBox_noticiaid")
+
+        self.submitButton_categorianoticia_noticia = QtWidgets.QPushButton(
+            self.categorianoticia_noticia_2)
+        self.submitButton_categorianoticia_noticia.setGeometry(
+            QtCore.QRect(20, 120, 101, 29))
+        self.submitButton_categorianoticia_noticia.setObjectName(
+            "submitButton_categorianoticia_noticia")
+        self.submitButton_categorianoticia_noticia.clicked.connect(
+            self.clicksubmitdelete)
+
+        self.tabsDeletion.addTab(self.categorianoticia_noticia_2, "")
+
+        _translate = QtCore.QCoreApplication.translate
+        self.searchLabel_autorid.setText(
+            _translate("MainWindow", "Índice do Autor*:"))
+        self.searchLabel_noticiaid.setText(
+            _translate("MainWindow", "Índice do Notícia*:"))
+        self.submitButton_autor_noticia.setText(
+            _translate("MainWindow", "Submit"))
+        self.tabsDeletion.setTabText(self.tabsDeletion.indexOf(
+            self.autor_noticia_2), _translate("MainWindow", "Notícia/Autor"))
+        self.searchLabel_vitimaid.setText(
+            _translate("MainWindow", "Índice da Vítima*:"))
+        self.searchLabel_noticiaid_2.setText(
+            _translate("MainWindow", "Índice do Notícia*:"))
+        self.submitButton_vitima_noticia.setText(
+            _translate("MainWindow", "Submit"))
+        self.tabsDeletion.setTabText(self.tabsDeletion.indexOf(
+            self.vitima_noticia_2), _translate("MainWindow", "Notícia/Vítima"))
+        self.searchLabel_influenciaid.setText(
+            _translate("MainWindow", "Índice da Influência*:"))
+        self.searchLabel_noticiaid_3.setText(
+            _translate("MainWindow", "Índice do Notícia*:"))
+        self.submitButton_influencia_noticia.setText(
+            _translate("MainWindow", "Submit"))
+        self.tabsDeletion.setTabText(self.tabsDeletion.indexOf(
+            self.influencia_noticia_2), _translate("MainWindow", "Notícia/Influência"))
+        self.searchLabel_midiaid.setText(
+            _translate("MainWindow", "Índice da Mídia*:"))
+        self.searchLabel_noticiaid_4.setText(
+            _translate("MainWindow", "Índice do Notícia*:"))
+        self.submitButton_midia_noticia.setText(
+            _translate("MainWindow", "Submit"))
+        self.tabsDeletion.setTabText(self.tabsDeletion.indexOf(
+            self.midia_noticia_2), _translate("MainWindow", "Notícia/Mídia"))
+        self.searchLabel_fonteid.setText(
+            _translate("MainWindow", "Índice da Fonte Confiável*:"))
+        self.searchLabel_noticiaid_5.setText(
+            _translate("MainWindow", "Índice do Notícia*:"))
+        self.submitButton_fonteconfiavel_noticia.setText(
+            _translate("MainWindow", "Submit"))
+        self.tabsDeletion.setTabText(self.tabsDeletion.indexOf(
+            self.fonteconfiavel_noticia_2), _translate("MainWindow", "Notícia/Fonte Confiável"))
+        self.searchLabel_palavraschaveid.setText(
+            _translate("MainWindow", "Palavra Chave*:"))
+        self.searchLabel_noticiaid_6.setText(
+            _translate("MainWindow", "Índice do Notícia*:"))
+        self.submitButton_palavraschave_noticia.setText(
+            _translate("MainWindow", "Submit"))
+        self.tabsDeletion.setTabText(self.tabsDeletion.indexOf(
+            self.palavraschave_noticia_2), _translate("MainWindow", "Notícia/Palavra Chave"))
+        self.searchLabel_localid.setText(
+            _translate("MainWindow", "Local*:"))
+        self.searchLabel_noticiaid_7.setText(
+            _translate("MainWindow", "Índice do Notícia*:"))
+        self.submitButton_local_noticia.setText(
+            _translate("MainWindow", "Submit"))
+        self.tabsDeletion.setTabText(self.tabsDeletion.indexOf(
+            self.local_noticia_2), _translate("MainWindow", "Notícia/Local"))
+        self.searchLabel_categoriaid.setText(
+            _translate("MainWindow", "Categoria*:"))
+        self.searchLabel_noticiaid_8.setText(
+            _translate("MainWindow", "Índice do Notícia*:"))
+        self.submitButton_categorianoticia_noticia.setText(
+            _translate("MainWindow", "Submit"))
+        self.tabsDeletion.setTabText(self.tabsDeletion.indexOf(
+            self.categorianoticia_noticia_2), _translate("MainWindow", "Notícia/Categoria da Notícia"))
+
+        
 
 
     def clicksubmitdelete(self):
@@ -294,11 +702,11 @@ class Ui_MainWindow(object):
             Controller.ControllerDeleteSubmitButton(whichtable, conn, Id)
             self.statusbar.showMessage("Ready")
         elif whichtable is "palavraschave":
-            palavra = self.spinBox_palavraschaveid.text()
+            palavra = self.searchField_nomepalavra.text()
             Controller.ControllerDeleteSubmitButton(whichtable, conn, palavra)
             self.statusbar.showMessage("Ready")
         elif whichtable is "local":
-            sigla = self.spinBox_categorianoticiaid.text()
+            sigla = self.searchField_sigla.text()
             Controller.ControllerDeleteSubmitButton(whichtable, conn, sigla)
             self.statusbar.showMessage("Ready")
         elif whichtable is "fonteconfiavel":
@@ -310,12 +718,60 @@ class Ui_MainWindow(object):
             Controller.ControllerDeleteSubmitButton(whichtable, conn, Id)
             self.statusbar.showMessage("Ready")
         elif whichtable is "influenciaexterna":
-            Id = str(self.spinBox_influeciaexternaid.value())
+            Id = str(self.spinBox_influenciaexternaid.value())
             Controller.ControllerDeleteSubmitButton(whichtable, conn, Id)
             self.statusbar.showMessage("Ready")
         elif whichtable is "idioma":
             Id = str(self.spinBox_idiomaid.value())
             Controller.ControllerDeleteSubmitButton(whichtable, conn, Id)
+            self.statusbar.showMessage("Ready")
+
+        elif whichtable is "autor_noticia":
+            autorid = str(self.spinBox_autorid.value())
+            noticiaid = str(self.spinBox_noticiaid.value())
+            Controller.ControllerDeleteSubmitButton(whichtable, conn, noticiaid, autorid)
+            self.statusbar.showMessage("Ready")
+        elif whichtable is "vitima_noticia":
+            vitimaid = str(self.spinBox_vitimaid.value())
+            noticiaid = str(self.spinBox_noticiaid_2.value())
+            Controller.ControllerDeleteSubmitButton(
+                whichtable, conn, noticiaid, vitimaid)
+            self.statusbar.showMessage("Ready")
+        elif whichtable is "vitima_noticia":
+            influenciaid = str(self.spinBox_influenciaid.value())
+            noticiaid = str(self.spinBox_noticiaid_3.value())
+            Controller.ControllerDeleteSubmitButton(
+                whichtable, conn, noticiaid, influenciaid)
+            self.statusbar.showMessage("Ready")
+        elif whichtable is "midia_noticia":
+            midiaid = str(self.spinBox_midiaid.value())
+            noticiaid = str(self.spinBox_noticiaid_4.value())
+            Controller.ControllerDeleteSubmitButton(
+                whichtable, conn, noticiaid, midiaid)
+            self.statusbar.showMessage("Ready")
+        elif whichtable is "fonteconfiavel_noticia":
+            fonteid = str(self.spinBox_fonteid.value())
+            noticiaid = str(self.spinBox_noticiaid_5.value())
+            Controller.ControllerDeleteSubmitButton(
+                whichtable, conn, noticiaid, fonteid)
+            self.statusbar.showMessage("Ready")
+        elif whichtable is "palavraschave_noticia":
+            palavraschaveid = self.searchField_palavraschaveid.text()
+            noticiaid = str(self.spinBox_noticiaid_6.value())
+            Controller.ControllerDeleteSubmitButton(
+                whichtable, conn, noticiaid, palavraschaveid)
+            self.statusbar.showMessage("Ready")
+        elif whichtable is "local_noticia":
+            localid = self.searchField_localid.text()
+            noticiaid = str(self.spinBox_noticiaid_7.value())
+            Controller.ControllerDeleteSubmitButton(
+                whichtable, conn, noticiaid, localid)
+            self.statusbar.showMessage("Ready")
+        elif whichtable is "categorianoticia_noticia":
+            categoriaid = str(self.spinBox_categoriaid.value())
+            noticiaid = str(self.spinBox_noticiaid_7.value())
+            Controller.ControllerDeleteSubmitButton(
+                whichtable, conn, noticiaid, categoriaid)
             self.statusbar.showMessage("Ready")
 
     
@@ -3147,29 +3603,3 @@ class Ui_MainWindow(object):
         # self.tabsDeletion.setTabText(self.tabsDeletion.indexOf(self.tab_influenciaexterna_3), _translate("MainWindow", "Influência Externa"))
         self.modesTabs.setTabText(self.modesTabs.indexOf(self.Deletion), _translate("MainWindow", "Deletion"))
         self.modesTabs.setTabText(self.modesTabs.indexOf(self.Update), _translate("MainWindow", "Update"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    db = QtSql.QSqlDatabase.addDatabase("QPSQL")
-    db.setDatabaseName("Projeto")
-    db.setUserName("admin")
-    db.setHostName("localhost")
-    db.setPassword("123")
-    ok = db.open()
-
-    connect_str = "dbname='Projeto' user='admin' host='localhost' password='123'"
-
-    conn = psycopg2.connect(connect_str)
-
-    if not ok:
-        print(db.lastError().text())
-        sys.exit(1)
-
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
-

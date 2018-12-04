@@ -1,7 +1,6 @@
 import sys
 import psycopg2
-import View as Interface
-import Model
+import View
 from PyQt5 import QtWidgets
 
 def main():
@@ -10,7 +9,7 @@ def main():
 
         conn = psycopg2.connect(connect_str)
         app = QtWidgets.QApplication(sys.argv)
-        db = Interface.QtSql.QSqlDatabase.addDatabase("QPSQL")
+        db = View.QtSql.QSqlDatabase.addDatabase("QPSQL")
         db.setDatabaseName("Projeto")
         db.setUserName("admin")
         db.setHostName("localhost")
@@ -23,7 +22,7 @@ def main():
             sys.exit(1)
 
         MainWindow = QtWidgets.QMainWindow()
-        ui = Interface.Ui_MainWindow()
+        ui = View.Ui_MainWindow()
         ui.setupUi(MainWindow)
         MainWindow.show()
         sys.exit(app.exec_())

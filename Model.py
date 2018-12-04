@@ -106,7 +106,7 @@ def Delete(TableName, conn, *args):
    try:
       string_args = list(map(lambda a: str(a), args))
       cursor = conn.cursor()
-      if(len(args) == 1):
+      if(len(args[0]) == 1):
          aux = str(args[0][0])
          sql = """SELECT """ + procedures_delete[TableName] + "(" + aux + """);"""
       else:

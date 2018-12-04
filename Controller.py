@@ -56,16 +56,3 @@ def ControllerLocal_Noticia():
 
 def ControllerCountTable(whichtable, conn):
 	return Model.Count(whichtable, conn)
-
-def CheckField(string):
-	cpfPattern = r"(?:^\d{3}.\d{3}.\d{3}-\d{2}$)"
-	# phonePattern = r"(?:\(\d{2}\)\d{5}-\d{4}$)"
-	matches = re.search(cpfPattern, string, re.IGNORECASE)
-	if matches:
-		print("Match: " + matches.group(0))
-		return 0
-	else:
-		print("No match")
-		return -1  
-
-
